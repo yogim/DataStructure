@@ -32,5 +32,17 @@ public class Node {
 	public void setNext(Object next) {
 		this.next = next;
 	}
-
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	
+	/*	if ((obj instanceof Node) && (((Node)obj).data
+				== this.data))
+		{
+				return true;
+				} else {
+				return false;
+				}*/
+	}
 }

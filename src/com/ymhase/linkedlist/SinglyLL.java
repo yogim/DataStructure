@@ -35,7 +35,7 @@ public class SinglyLL {
 		SinglyLL ll = new SinglyLL();
 		ll.createLinkedList(1);
 		ll.addNode(2);
-		ll.printLinkedList();
+		ll.printLinkedList(); /* print linkedlist */
 
 	}
 }
