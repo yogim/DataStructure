@@ -10,6 +10,14 @@ public class Node {
 		this.data = data;
 		this.next = null;
 	}
+	
+	
+	public Node(int data, Node node) {
+		super();
+		this.data = data;
+		this.next = node;
+	}
+
 
 	public Node(int data, Object next) {
 		super();
