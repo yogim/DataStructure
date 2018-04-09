@@ -113,15 +113,42 @@ public class SinglyLL {
 	}
     }
 
-    public void reverseLL() {
+    public void addDatainLL() {
 
+	this.createLinkedList(new Node(1));
+	this.addNodeAtEnd(new Node(2));
+	this.addNodeAtEnd(new Node(3));
+	this.addNodeAtEnd(new Node(4));
+	this.addNodeAtEnd(new Node(5));
+	this.addNodeAtEnd(new Node(6));
+	this.addNodeAtEnd(new Node(7));
+	this.addNodeAtEnd(new Node(8));
+	this.addNodeAtEnd(new Node(9));
+	this.addNodeAtEnd(new Node(10));
+
+    }
+
+    public void reverseLL() {
+	
+	Node prvItr = null;
+	Node nextItr = null;
+	Node current = this.getHead();
+
+	while (current != null) {
+	    nextItr = (Node)current.getNext();
+	    current.setNext(prvItr);
+	    prvItr = current;
+	    current= nextItr;
+	}
+
+	this.head = prvItr;
     }
 
     public void createIntersectionLL() {
 	SinglyLL ll1 = new SinglyLL();
 	SinglyLL ll2 = new SinglyLL();
 	Node itr1 = null;
-	Node itr2 = null;
+	// Node itr2 = null;
 	ll1.createLinkedList(new Node(1));
 	ll1.addNodeAtEnd(new Node(2));
 	ll1.addNodeAtEnd(new Node(3));
@@ -154,9 +181,9 @@ public class SinglyLL {
 
     public static void main(String args[]) {
 	SinglyLL ll = new SinglyLL();
-	ll.createLinkedList(new Node(1));
-	ll.addNodeAtStart(new Node(2));
-	ll.deleteLastNode();
+	ll.addDatainLL();
+	ll.printLinkedList();
+	ll.reverseLL();
 	ll.printLinkedList();
 
     }
