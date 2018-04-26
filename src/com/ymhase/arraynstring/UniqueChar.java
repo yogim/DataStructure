@@ -2,26 +2,29 @@ package com.ymhase.arraynstring;
 
 public class UniqueChar {
 
-	public boolean isUnique() {
-		String str = "abcda";
-		boolean[] char_set = new boolean[128];
-		
-		for (int i=0; i< str.length() ; i++) {
-	        if(char_set[str.charAt(i)]) {
-	        	return false;
-	        }
-	        char_set[str.charAt(i)] =  true;
-		}
-		return true;
-	}
+    public static void main(String args[]) {
 
-	public static void main(String args[]) {
-		
-		UniqueChar UC = new UniqueChar();
-		
-		System.out.println(UC.isUnique());
-		
+	String str = "abcd  "; 
+	boolean UniqueStaus = true;
+	boolean[] char_set = new boolean[128];
+
+	for (int i = 0; i <= str.length() - 1; i++) {
+
+	    int asciiValue = str.charAt(i);
+	    if (char_set[asciiValue]) {
+
+		UniqueStaus = false;
+		break;
+	    }
+	    char_set[asciiValue] = true;
 
 	}
+	if (UniqueStaus == false) {
+	    System.out.println("not Unique");
+	} else {
+
+	    System.out.println("Unique");
+	}
+    }
 
 }

@@ -1,10 +1,24 @@
 package com.ymhase.arraynstring;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.text.Position;
+
+class postion {
+    int i;
+    int j;
+
+    postion(int i, int j) {
+
+	this.i = i;
+	this.j = j;
+    }
+}
 
 public class ZeroMatrix {
     int[][] matrix = { { 1, 0, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-    int[][] locationMatrix = new int[3][3];
+    ArrayList<postion> postions = new ArrayList<>();
 
     public void acceptElementsForMatrix() {
 	Scanner scan = new Scanner(System.in);
@@ -21,6 +35,8 @@ public class ZeroMatrix {
 
 	for (int i = 0; i <= 2; i++) {
 	    for (int j = 0; j <= 2; j++) {
+		new postion(i, j);
+
 		System.out.print(" " + matrix[i][j]);
 	    }
 	    System.out.println();
@@ -33,19 +49,39 @@ public class ZeroMatrix {
 	for (int i = 0; i <= 2; i++) {
 	    for (int j = 0; j <= 2; j++) {
 		if (matrix[i][j] == 0) {
-		    locationMatrix[i][j] = 1;
+		    // locationMatrix[i][j] = 1;
 		}
 	    }
 	}
 
 	for (int i = 0; i <= 2; i++) {
 	    for (int j = 0; j <= 2; j++) {
-		if (locationMatrix[i][j] == 1) {
-		    setRowToZero(i);
-		    setColumnTozero(j);
+		/*
+		 * if (locationMatrix[i][j] == 1) { setRowToZero(i); setColumnTozero(j); }
+		 */
+	    }
+	}
+    }
+
+    public void zeroMat() {
+
+	for (int i = 0; i <= 2; i++) {
+	    for (int j = 0; j <= 2; j++) {
+		if (matrix[i][j] == 0) {
+		    postions.add(new postion(i, j));
+		    System.out.println(i + "--" + j);
+
 		}
 	    }
 	}
+
+	for (postion p : postions) {
+
+	    setColumnTozero(p.j);
+	    setRowToZero(p.i);
+	}
+	printMatrix(this.matrix);
+
     }
 
     private void setColumnTozero(int j) {
@@ -67,13 +103,8 @@ public class ZeroMatrix {
     public static void main(String args[]) {
 
 	ZeroMatrix zm = new ZeroMatrix();
-	zm.printMatrix(zm.matrix);
-	System.out.println("-----------------");
-	zm.checkZero();
 
-	zm.printMatrix(zm.locationMatrix);
-	System.out.println("-----------------");
-	zm.printMatrix(zm.matrix);
+	zm.zeroMat();
 
     }
 

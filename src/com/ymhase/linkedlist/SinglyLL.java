@@ -129,16 +129,16 @@ public class SinglyLL {
     }
 
     public void reverseLL() {
-	
+
 	Node prvItr = null;
 	Node nextItr = null;
 	Node current = this.getHead();
 
 	while (current != null) {
-	    nextItr = (Node)current.getNext();
+	    nextItr = (Node) current.getNext();
 	    current.setNext(prvItr);
 	    prvItr = current;
-	    current= nextItr;
+	    current = nextItr;
 	}
 
 	this.head = prvItr;
