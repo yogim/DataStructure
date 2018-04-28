@@ -25,10 +25,10 @@ public class ThreeInOneStack {
 
     }
 
-    public boolean isFull(int stackNum) {
+    public boolean isFull(int stackNum) throws  NullPointerException {
 
 	if (size[stackNum] >= capacity) {
-	    return false;
+	    throw new NullPointerException();
 	}
 	return true;
     }
