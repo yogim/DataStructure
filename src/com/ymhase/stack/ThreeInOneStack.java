@@ -13,19 +13,39 @@ public class ThreeInOneStack {
 	size = new int[numberOfStack];
     }
 
-    public void push(int stackNumber, int value) {
+    public void push(int stackNumber, int value) throws StackException {
 
 	if (!isFull(stackNumber)) {
-	    System.out.println("is full");
+	    throw new StackException();
 	}
 
 	size[stackNumber]++;
 	values[indexOfTop(stackNumber)] = value;
-	System.out.println(values[0]);
+    }
+
+    public int peek(int stackNumber) throws StackException {
+
+	if ((size[stackNumber] == 0)) {
+	    throw new StackException();
+	}
+	return values[indexOfTop(stackNumber)];
 
     }
 
-    public boolean isFull(int stackNum) throws  NullPointerException {
+    public int pop(int stackNumber) throws StackException {
+
+	if (size[stackNumber] == 0) {
+	    throw new StackException();
+	}
+
+	int item = values[indexOfTop(stackNumber)];
+
+	size[stackNumber]--;
+	return item;
+
+    }
+
+    public boolean isFull(int stackNum) throws NullPointerException {
 
 	if (size[stackNum] >= capacity) {
 	    throw new NullPointerException();
@@ -36,17 +56,35 @@ public class ThreeInOneStack {
     public int indexOfTop(int stackNum) {
 
 	int offset = stackNum * capacity;
-	int index = size[stackNum] + offset - 1;
-
-	return index;
+	return (size[stackNum] + offset - 1);
+    }
+    
+    
+    public boolean isEmpty(int stackNumber) {
+	if(size[stackNumber]==0) {
+	    return true;
+	}
+	
+	return false;
+	
     }
 
     public static void main(String args[]) {
 
 	ThreeInOneStack stack = new ThreeInOneStack(4);
-	stack.push(0, 1);
-	
-	
+	try {
+
+	    System.out.println(stack.peek(0));
+	    System.out.println(stack.isEmpty(0));
+	    System.out.println(stack.pop(0));
+	    System.out.println(stack.isEmpty(0));
+	    System.out.println(stack.peek(0));
+
+	} catch (Exception ex) {
+
+	    ex.printStackTrace();
+	}
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ymhase.stack;
 
+@SuppressWarnings("serial")
 public class StackException extends Exception {
     private String msg = null;
 
