@@ -3,8 +3,8 @@ package com.ymhase.binarytree;
 public class BTNode {
     
     	int data;
-    	Object left;
-    	Object  right;
+    	BTNode left;
+    	BTNode  right;
     	
     	
     	public BTNode(int data) {
@@ -25,22 +25,22 @@ public class BTNode {
 	}
 
 
-	public Object getLeft() {
+	public BTNode getLeft() {
 	    return left;
 	}
 
 
-	public void setLeft(Object left) {
+	public void setLeft(BTNode left) {
 	    this.left = left;
 	}
 
 
-	public Object getRight() {
+	public BTNode getRight() {
 	    return right;
 	}
 
 
-	public void setRight(Object right) {
+	public void setRight(BTNode right) {
 	    this.right = right;
 	}
     	

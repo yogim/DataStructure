@@ -3,8 +3,6 @@ package com.ymhase.arraynstring;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.text.Position;
-
 class postion {
     int i;
     int j;

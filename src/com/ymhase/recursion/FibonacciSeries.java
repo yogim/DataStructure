@@ -34,8 +34,9 @@ public class FibonacciSeries {
 
 	public static void main(String args[]) {
 		FibonacciSeries fs = new FibonacciSeries();
-		System.out.println("0");
-		System.out.println("1");
+		fs.printFibonacci(5);
+	//	System.out.println("0");
+		//System.out.println("1");
 		//FibonacciSeries.printFibonacciByRecursion(13);
 	}
 }

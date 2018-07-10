@@ -44,7 +44,7 @@ public class ThreeInOneStack {
     public static void main(String args[]) {
 
 	ThreeInOneStack stack = new ThreeInOneStack(4);
-	stack.push(0, 1);
+	stack.push(0, 2);
 	
 	
     }

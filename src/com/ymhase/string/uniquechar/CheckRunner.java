@@ -1,7 +1,5 @@
 package com.ymhase.string.uniquechar;
 
-import com.ymhase.common.AlgoFactory;
-
 public class CheckRunner {
 
     
