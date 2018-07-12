@@ -140,13 +140,13 @@ public class Binarytree {
 			return;
 		}
 
-		while ((!s1.isEmpty()) && (s1.peek()!=null) ) {
+		while ((!s1.isEmpty()) && (s1.peek() != null)) {
 
 			s2.push(s1.pop());
 
 			if (s2.peek().getLeft() != null) {
-//				System.out.println(s2.peek().getLeft().getData());
-//				System.out.println(s2.peek().getData());
+				// System.out.println(s2.peek().getLeft().getData());
+				// System.out.println(s2.peek().getData());
 
 				s1.push(s2.peek().getLeft());
 
@@ -160,6 +160,50 @@ public class Binarytree {
 
 		while (!s2.isEmpty()) {
 			System.out.println(s2.pop().getData());
+
+		}
+
+	}
+
+	public void search(int data) {
+		BTNode itr = this.head;
+
+		while (itr != null) {
+
+			if (itr.getData() == data) {
+				System.out.println("Found");
+				break;
+			}
+
+			if (itr.getData() > data) {
+				itr = itr.getLeft();
+			} else {
+				itr = itr.getRight();
+			}
+
+		}
+
+	}
+
+	public void delete(int data) {
+		BTNode itr = this.head;
+		BTNode prvitr = null;
+
+		while (itr != null) {
+
+			if (itr.getData() == data) {
+				itr.getRight().setLeft(itr.getLeft());
+				prvitr.setRight(itr.getRight());
+				break;
+			}
+
+			prvitr = itr;
+			if (itr.getData() > data) {
+				itr = itr.getLeft();
+			} else {
+				itr = itr.getRight();
+			}
+
 		}
 
 	}
@@ -177,23 +221,28 @@ public class Binarytree {
 
 	}
 
+	private void intialiseWithoutRecursion() {
+
+		this.insertWithoutRecursion(10);
+		this.insertWithoutRecursion(3);
+		this.insertWithoutRecursion(5);
+		this.insertWithoutRecursion(9);
+		this.insertWithoutRecursion(13);
+		this.insertWithoutRecursion(16);
+		this.insertWithoutRecursion(11);
+		this.insertWithoutRecursion(19);
+		this.insertWithoutRecursion(20);
+
+	}
+
 	public static void main(String[] args) {
 
 		Binarytree BT = new Binarytree();
-		BT.insertWithoutRecursion(10);
-		BT.insertWithoutRecursion(3);
-		BT.insertWithoutRecursion(5);
-
-		BT.insertWithoutRecursion(9);
-		BT.insertWithoutRecursion(13);
-		BT.insertWithoutRecursion(16);
-		BT.insertWithoutRecursion(11);
-		BT.insertWithoutRecursion(19);
-		BT.insertWithoutRecursion(20);
-
+		BT.intiaiseWithoutRecusion();
 		BT.postorderTraversal();
-		System.out.println("-------------");
-		BT.postorderWithoutIteration();
+		BT.delete(5);
+		System.out.println("----");
+		BT.postorderTraversal();
 
 	}
 
