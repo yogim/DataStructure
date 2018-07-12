@@ -1,6 +1,5 @@
 package com.ymhase.linkedlist;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class RemoveDuplicateUnsortedLL {
@@ -16,7 +15,7 @@ public class RemoveDuplicateUnsortedLL {
 		ll.add(4);
 		ll.add(5);
 
-		HashMap<Integer, Integer> hm = new HashMap<>();
+		//HashMap<Integer, Integer> hm = new HashMap<>();
 
 	}
 

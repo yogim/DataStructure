@@ -79,7 +79,7 @@ public class StringRotation {
     }
 
     public static void main(String args[]) {
-	new StringRotation().checkWithCharArray();
+	//new StringRotation().checkWithCharArray();
 
     }
 

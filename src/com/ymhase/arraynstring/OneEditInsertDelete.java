@@ -21,7 +21,7 @@ public class OneEditInsertDelete {
 
     private boolean checkDelete(String str1, String str2) {
 
-	int onedelete;
+//	int onedelete;
 	for (int i = 0; i <= str1.length(); i++) {
 
 	    if (str1.charAt(i) != str2.charAt(i)) {
