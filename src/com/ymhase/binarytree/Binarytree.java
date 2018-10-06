@@ -1,5 +1,7 @@
 package com.ymhase.binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Binarytree {
@@ -167,22 +169,17 @@ public class Binarytree {
 
 	public void search(int data) {
 		BTNode itr = this.head;
-
 		while (itr != null) {
-
 			if (itr.getData() == data) {
 				System.out.println("Found");
 				break;
 			}
-
 			if (itr.getData() > data) {
 				itr = itr.getLeft();
 			} else {
 				itr = itr.getRight();
 			}
-
 		}
-
 	}
 
 	public void delete(int data) {
@@ -208,6 +205,41 @@ public class Binarytree {
 
 	}
 
+	public void dfs() {
+
+		BTNode itr = this.head;
+		Stack<BTNode> s = new Stack<>();
+		s.push(itr);
+
+		while (!s.empty()) {
+
+		}
+
+	}
+
+	public void bfs() {
+
+		// BTNode itr = this.head;
+		Queue<BTNode> q = new LinkedList<>();
+		q.add(this.head);
+
+		while (!q.isEmpty()) {
+			if (q.peek().getLeft() != null) {
+				// System.out.println(q.peek().getData());
+				q.add(q.peek().getLeft());
+			}
+
+			if (q.peek().getRight() != null) {
+				// System.out.println(q.peek().getData());
+				q.add(q.peek().getRight());
+			}
+
+			System.out.println(q.poll().getData());
+
+		}
+
+	}
+
 	private void intiaiseWithoutRecusion() {
 		this.insert(10);
 		this.insert(3);
@@ -225,7 +257,7 @@ public class Binarytree {
 
 		this.insertWithoutRecursion(10);
 		this.insertWithoutRecursion(3);
-		this.insertWithoutRecursion(5);
+		this.insertWithoutRecursion(2);
 		this.insertWithoutRecursion(9);
 		this.insertWithoutRecursion(13);
 		this.insertWithoutRecursion(16);
@@ -238,11 +270,10 @@ public class Binarytree {
 	public static void main(String[] args) {
 
 		Binarytree BT = new Binarytree();
-		BT.intiaiseWithoutRecusion();
-		BT.postorderTraversal();
-		BT.delete(5);
+		BT.intialiseWithoutRecursion();
+		// BT.postorderTraversal();
 		System.out.println("----");
-		BT.postorderTraversal();
+		BT.bfs();
 
 	}
 
