@@ -27,17 +27,17 @@ public class Binarytree {
 
 	private void insertAtbranch(int data, BTNode iterator) {
 		if (iterator.getData() > data) {
-			if (iterator.getLeft() == null) {
-				iterator.setLeft(new BTNode(data));
+			if (iterator.getLeftNode() == null) {
+				iterator.setLeftNode(new BTNode(data));
 			} else {
-				insertAtbranch(data, iterator.getLeft());
+				insertAtbranch(data, iterator.getLeftNode());
 			}
 
 		} else {
-			if (iterator.getRight() == null) {
-				iterator.setRight(new BTNode(data));
+			if (iterator.getRightNode() == null) {
+				iterator.setRightNode(new BTNode(data));
 			} else {
-				insertAtbranch(data, iterator.getRight());
+				insertAtbranch(data, iterator.getRightNode());
 			}
 
 		}
@@ -69,9 +69,9 @@ public class Binarytree {
 
 		System.out.println(node.getData());
 
-		preorder(node.getLeft());
+		preorder(node.getLeftNode());
 
-		preorder(node.getRight());
+		preorder(node.getRightNode());
 
 	}
 
@@ -80,11 +80,11 @@ public class Binarytree {
 		if (node == null)
 			return;
 
-		inorder(node.getLeft());
+		inorder(node.getLeftNode());
 
 		System.out.println(node.getData());
 
-		inorder(node.getRight());
+		inorder(node.getRightNode());
 
 	}
 
@@ -93,9 +93,9 @@ public class Binarytree {
 		if (node == null)
 			return;
 
-		postorder(node.getLeft());
+		postorder(node.getLeftNode());
 
-		postorder(node.getRight());
+		postorder(node.getRightNode());
 
 		System.out.println(node.getData());
 
@@ -117,16 +117,16 @@ public class Binarytree {
 		while (iterator != null) {
 			parent = iterator;
 			if (iterator.getData() > data) {
-				iterator = iterator.getLeft();
+				iterator = iterator.getLeftNode();
 			} else {
-				iterator = iterator.getRight();
+				iterator = iterator.getRightNode();
 			}
 		}
 
 		if (parent.getData() > data) {
-			parent.setLeft(new BTNode(data));
+			parent.setLeftNode(new BTNode(data));
 		} else {
-			parent.setRight(new BTNode(data));
+			parent.setRightNode(new BTNode(data));
 		}
 
 	}
@@ -146,16 +146,16 @@ public class Binarytree {
 
 			s2.push(s1.pop());
 
-			if (s2.peek().getLeft() != null) {
+			if (s2.peek().getLeftNode() != null) {
 				// System.out.println(s2.peek().getLeft().getData());
 				// System.out.println(s2.peek().getData());
 
-				s1.push(s2.peek().getLeft());
+				s1.push(s2.peek().getLeftNode());
 
 			}
 
-			if (s2.peek().getRight() != null) {
-				s1.push(s2.peek().getRight());
+			if (s2.peek().getRightNode() != null) {
+				s1.push(s2.peek().getRightNode());
 			}
 
 		}
@@ -175,9 +175,9 @@ public class Binarytree {
 				break;
 			}
 			if (itr.getData() > data) {
-				itr = itr.getLeft();
+				itr = itr.getLeftNode();
 			} else {
-				itr = itr.getRight();
+				itr = itr.getRightNode();
 			}
 		}
 	}
@@ -189,16 +189,16 @@ public class Binarytree {
 		while (itr != null) {
 
 			if (itr.getData() == data) {
-				itr.getRight().setLeft(itr.getLeft());
-				prvitr.setRight(itr.getRight());
+				itr.getRightNode().setLeftNode(itr.getLeftNode());
+				prvitr.setRightNode(itr.getRightNode());
 				break;
 			}
 
 			prvitr = itr;
 			if (itr.getData() > data) {
-				itr = itr.getLeft();
+				itr = itr.getLeftNode();
 			} else {
-				itr = itr.getRight();
+				itr = itr.getRightNode();
 			}
 
 		}
@@ -224,14 +224,14 @@ public class Binarytree {
 		q.add(this.head);
 
 		while (!q.isEmpty()) {
-			if (q.peek().getLeft() != null) {
+			if (q.peek().getLeftNode() != null) {
 				// System.out.println(q.peek().getData());
-				q.add(q.peek().getLeft());
+				q.add(q.peek().getLeftNode());
 			}
 
-			if (q.peek().getRight() != null) {
+			if (q.peek().getRightNode() != null) {
 				// System.out.println(q.peek().getData());
-				q.add(q.peek().getRight());
+				q.add(q.peek().getRightNode());
 			}
 
 			System.out.println(q.poll().getData());

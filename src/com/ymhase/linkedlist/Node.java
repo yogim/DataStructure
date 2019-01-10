@@ -2,8 +2,8 @@ package com.ymhase.linkedlist;
 
 public class Node {
 
-	private int data;
-	private Object next;
+	public int data;
+	public Object next;
 
 	public Node(int data) {
 		super();
