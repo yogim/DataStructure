@@ -47,11 +47,9 @@ public class DFSPreorder {
 
 		BinaryTree bt = new BinaryTree();
 
-		bt.createTree(arr);
+		bt.intialiseTree(arr);
 
 		DFSPreorder.preorderTraversal(bt);
-
-		System.out.println(">>>>>");
 
 		DFSPreorder.preorderRecursively(bt.root);
 

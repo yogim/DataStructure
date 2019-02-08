@@ -51,7 +51,7 @@ public class DFSInorder {
 
 		BinaryTree bt = new BinaryTree();
 
-		bt.createTree(arr);
+		bt.intialiseTree(arr);
 
 		DFSInorder.inorder(bt);
 		

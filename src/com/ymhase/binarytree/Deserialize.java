@@ -103,13 +103,12 @@ public class Deserialize {
 
 	public static void main(String[] args) {
 
-		Binarytree bt = new Binarytree();
-		bt.intiaiseWithoutRecusion();
+		BinaryTree bt = new BinaryTree();
 		BFS bfs = new BFS();
-		bfs.bfs(bt.head);
+		bfs.bfs(bt.root);
 
 		Deserialize de = new Deserialize();
-		de.deserialize(bt.head);
+		de.deserialize(bt.root);
 
 	}
 }

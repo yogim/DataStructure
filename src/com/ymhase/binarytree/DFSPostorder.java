@@ -49,7 +49,7 @@ public class DFSPostorder {
 
 		BinaryTree bt = new BinaryTree();
 
-		bt.createTree(arr);
+		bt.intialiseTree(arr);
 
 		DFSPostorder.postorder(bt);
 		
