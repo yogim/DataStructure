@@ -30,6 +30,19 @@ public class DFSPostorder {
 		}
 	}
 
+	
+	private static void postorderRecursively(BTNode node) {
+
+		if (node == null)
+			return;
+
+		postorderRecursively(node.getLeftNode());
+
+		postorderRecursively(node.getRightNode());
+
+		System.out.println(node.getData());
+
+	}
 	public static void main(String[] args) {
 
 		int[] arr = { 4, 7, 8, 5, 2 };
@@ -39,6 +52,11 @@ public class DFSPostorder {
 		bt.createTree(arr);
 
 		DFSPostorder.postorder(bt);
+		
+		System.out.println(">>>>>");
+		
+
+		DFSPostorder.postorderRecursively(bt.root);
 		
 	}
 

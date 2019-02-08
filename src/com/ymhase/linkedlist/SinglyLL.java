@@ -2,40 +2,38 @@ package com.ymhase.linkedlist;
 
 import java.util.HashSet;
 
-import javax.swing.text.Position;
-
 public class SinglyLL {
 
-	private Node head = null;
+	private SinglyLinkedListNode head = null;
 
 	public SinglyLL() {
 		this.head = null;
 
 	}
 
-	public Node getHead() {
+	public SinglyLinkedListNode getHead() {
 		return head;
 	}
 
-	public void setHead(Node head) {
+	public void setHead(SinglyLinkedListNode head) {
 		this.head = head;
 	}
 
 	public void addNode(int data) {
-		Node itr = this.head;
+		SinglyLinkedListNode itr = this.head;
 
 		if (this.head == null) {
-			head = new Node(data);
+			head = new SinglyLinkedListNode(data);
 			return;
 		}
 
 		while (itr != null) {
 
 			if (itr.next == null) {
-				itr.next = new Node(data);
+				itr.next = new SinglyLinkedListNode(data);
 				return;
 			}
-			itr = (Node) itr.next;
+			itr = (SinglyLinkedListNode) itr.next;
 
 		}
 	}
@@ -46,7 +44,7 @@ public class SinglyLL {
 		// this.head = new Node(data);
 		// return;
 		// } else {
-		Node newNode = new Node(data);
+		SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 		newNode.next = head;
 		head = newNode;
 		// }
@@ -55,10 +53,10 @@ public class SinglyLL {
 
 	public void addAtPosition(int data, int postion) {
 		int length = 0;
-		Node itr = this.head;
+		SinglyLinkedListNode itr = this.head;
 
 		if (postion == 0) {
-			Node newNode = new Node(data);
+			SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 			newNode.next = head;
 			head = newNode;
 			return;
@@ -68,7 +66,7 @@ public class SinglyLL {
 		postion--;
 
 		while (postion != 0) {
-			itr = (Node) itr.next;
+			itr = (SinglyLinkedListNode) itr.next;
 			postion--;
 			if (postion > 0 && itr == null) {
 				System.out.println("ll is smaller than the postion");
@@ -76,9 +74,9 @@ public class SinglyLL {
 			}
 		}
 
-		Node newNode = new Node(data);
+		SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 		if (itr.next != null) {
-			Node temp = (Node) itr.next;
+			SinglyLinkedListNode temp = (SinglyLinkedListNode) itr.next;
 			newNode.next = temp;
 			itr.next = newNode;
 
@@ -89,11 +87,11 @@ public class SinglyLL {
 
 	public void reverse() {
 
-		Node prev = null;
-		Node current = this.head;
-		Node next = null;
+		SinglyLinkedListNode prev = null;
+		SinglyLinkedListNode current = this.head;
+		SinglyLinkedListNode next = null;
 		while (current != null) {
-			next = (Node) current.next;
+			next = (SinglyLinkedListNode) current.next;
 			current.next = prev;
 			prev = current;
 			current = next;
@@ -103,15 +101,15 @@ public class SinglyLL {
 	}
 
 	public void insertLoop() {
-		Node itr = this.head;
-		Node itr2 = null;
+		SinglyLinkedListNode itr = this.head;
+		SinglyLinkedListNode itr2 = null;
 		int count = 1;
 		while (itr.next != null) {
 
 			if (count == 1) {
 				itr2 = itr;
 			}
-			itr = (Node) itr.next;
+			itr = (SinglyLinkedListNode) itr.next;
 			count++;
 
 		}
@@ -121,58 +119,62 @@ public class SinglyLL {
 	}
 
 	public boolean detectLoop() {
-		Node itr1 = this.head;
-		Node itr2 = (Node) itr1.next;
-		int count =1;
+		SinglyLinkedListNode itr1 = this.head;
+		SinglyLinkedListNode itr2 = (SinglyLinkedListNode) itr1.next;
+		int count = 1;
 		while (itr2.next != null) {
 
 			if (itr1.next == itr2.next) {
 				return true;
 			}
-			itr1 = (Node) itr1.next;
-			for(int i = 0; i<=count;i++)
-				itr2 = (Node) itr2.next;
+			itr1 = (SinglyLinkedListNode) itr1.next;
+			for (int i = 0; i <= count; i++)
+				itr2 = (SinglyLinkedListNode) itr2.next;
 
 			count++;
 		}
 		return false;
 
 	}
-	
-	
+
 	public void sum(SinglyLL l1, SinglyLL l2) {
-		
-		
-		
+
 	}
 
-	
-	public  void intersectionChecker(SinglyLL L1, SinglyLL l2) {
-		
+	public void intersectionChecker(SinglyLL L1, SinglyLL l2) {
+
 	}
-	
-	
+
 	public void print() {
-		Node itr = this.head;
+		SinglyLinkedListNode itr = this.head;
 		if (itr == null)
 			System.out.println("ll is not intialised");
 		else {
 			while (itr != null) {
 				System.out.println(itr.data);
-				itr = (Node) itr.next;
+				itr = (SinglyLinkedListNode) itr.next;
 			}
 		}
 	}
 
-	public static void main(String[] args) {
-		SinglyLL ll = new SinglyLL();
+	public boolean hasCycle(SinglyLinkedListNode head) {
 
-		ll.addNode(1);
-		ll.addNode(2);
-		ll.addNode(3);
-	//	ll.addNode(4);
-		ll.insertLoop();
-		System.out.println(ll.detectLoop());
+		if (head == null || head.next == null)
+			return false;
+
+		SinglyLinkedListNode fast = head;
+		SinglyLinkedListNode slow = head;
+
+		while (fast != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast)
+				return true;
+
+		}
+
+		return false;
 
 	}
 
@@ -180,19 +182,19 @@ public class SinglyLL {
 		this.setHead(null);
 	}
 
-	public Node getAddressOfLastNode() {
-		Node iterator = head;
+	public SinglyLinkedListNode getAddressOfLastNode() {
+		SinglyLinkedListNode iterator = head;
 		while (iterator.getNext() != null) {
-			iterator = (Node) iterator.getNext();
+			iterator = (SinglyLinkedListNode) iterator.getNext();
 		}
 		return iterator;
 	}
 
-	public void addNodeAtEnd(Node newNode) {
+	public void addNodeAtEnd(SinglyLinkedListNode newNode) {
 		getAddressOfLastNode().setNext(newNode);
 	}
 
-	public boolean addNodeAtStart(Node newNode) {
+	public boolean addNodeAtStart(SinglyLinkedListNode newNode) {
 		if (head == null) {
 			this.head = newNode;
 		} else {
@@ -202,14 +204,14 @@ public class SinglyLL {
 		return true;
 	}
 
-	public boolean addNodeAtPosition(Node newNode, int postion) {
-		Node iterator = head;
-		Node prvNode = null;
+	public boolean addNodeAtPosition(SinglyLinkedListNode newNode, int postion) {
+		SinglyLinkedListNode iterator = head;
+		SinglyLinkedListNode prvNode = null;
 		if (iterator != null) {
 			while (postion < 0) {
 				if (iterator.getNext() != null) {
 					prvNode = iterator;
-					iterator = (Node) iterator.getNext();
+					iterator = (SinglyLinkedListNode) iterator.getNext();
 					postion--;
 				} else {
 					System.out.println("Linked list is short");
@@ -223,16 +225,16 @@ public class SinglyLL {
 	}
 
 	public void printLinkedList() {
-		Node iterator = head;
+		SinglyLinkedListNode iterator = head;
 		while (iterator != null) {
 			System.out.println(iterator.getData());
-			iterator = (Node) iterator.getNext();
+			iterator = (SinglyLinkedListNode) iterator.getNext();
 		}
 	}
 
 	public void removeDuplicate() {
-		Node iterator = head;
-		Node previous = head;
+		SinglyLinkedListNode iterator = head;
+		SinglyLinkedListNode previous = head;
 		HashSet<Integer> set = new HashSet<Integer>();
 		while (iterator != null) {
 			if (!set.contains(iterator.getData())) {
@@ -241,25 +243,25 @@ public class SinglyLL {
 				previous.setNext(iterator.getNext());
 			}
 			previous = iterator;
-			iterator = (Node) iterator.getNext();
+			iterator = (SinglyLinkedListNode) iterator.getNext();
 		}
 	}
 
 	public void deleteStartNode() {
 		try {
-			this.head = (Node) head.getNext();
+			this.head = (SinglyLinkedListNode) head.getNext();
 		} catch (Exception e) {
 			System.out.println("Exception occured");
 		}
 	}
 
 	public void deleteLastNode() {
-		Node iterator = this.head;
-		Node prvNode = null;
+		SinglyLinkedListNode iterator = this.head;
+		SinglyLinkedListNode prvNode = null;
 		try {
 			while (iterator.getNext() != null) {
 				prvNode = iterator;
-				iterator = (Node) iterator.getNext();
+				iterator = (SinglyLinkedListNode) iterator.getNext();
 			}
 			prvNode.setNext(null);
 		} catch (Exception e) {
@@ -269,26 +271,26 @@ public class SinglyLL {
 
 	public void addDatainLL() {
 
-		this.addNodeAtEnd(new Node(2));
-		this.addNodeAtEnd(new Node(3));
-		this.addNodeAtEnd(new Node(4));
-		this.addNodeAtEnd(new Node(5));
-		this.addNodeAtEnd(new Node(6));
-		this.addNodeAtEnd(new Node(7));
-		this.addNodeAtEnd(new Node(8));
-		this.addNodeAtEnd(new Node(9));
-		this.addNodeAtEnd(new Node(10));
+		this.addNodeAtEnd(new SinglyLinkedListNode(2));
+		this.addNodeAtEnd(new SinglyLinkedListNode(3));
+		this.addNodeAtEnd(new SinglyLinkedListNode(4));
+		this.addNodeAtEnd(new SinglyLinkedListNode(5));
+		this.addNodeAtEnd(new SinglyLinkedListNode(6));
+		this.addNodeAtEnd(new SinglyLinkedListNode(7));
+		this.addNodeAtEnd(new SinglyLinkedListNode(8));
+		this.addNodeAtEnd(new SinglyLinkedListNode(9));
+		this.addNodeAtEnd(new SinglyLinkedListNode(10));
 
 	}
 
 	public void reverseLL() {
 
-		Node prvItr = null;
-		Node nextItr = null;
-		Node current = this.getHead();
+		SinglyLinkedListNode prvItr = null;
+		SinglyLinkedListNode nextItr = null;
+		SinglyLinkedListNode current = this.getHead();
 
 		while (current != null) {
-			nextItr = (Node) current.getNext();
+			nextItr = (SinglyLinkedListNode) current.getNext();
 			current.setNext(prvItr);
 			prvItr = current;
 			current = nextItr;
@@ -300,33 +302,120 @@ public class SinglyLL {
 	public void createIntersectionLL() {
 		SinglyLL ll1 = new SinglyLL();
 		SinglyLL ll2 = new SinglyLL();
-		Node itr1 = null;
+		SinglyLinkedListNode itr1 = null;
 		// Node itr2 = null;
-		ll1.addNodeAtEnd(new Node(2));
-		ll1.addNodeAtEnd(new Node(3));
-		ll1.addNodeAtEnd(new Node(4));
-		ll1.addNodeAtEnd(new Node(5));
-		ll1.addNodeAtEnd(new Node(6));
-		ll1.addNodeAtEnd(new Node(7));
-		ll1.addNodeAtEnd(new Node(8));
-		ll1.addNodeAtEnd(new Node(9));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(2));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(3));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(4));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(5));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(6));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(7));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(8));
+		ll1.addNodeAtEnd(new SinglyLinkedListNode(9));
 		itr1 = ll1.getHead();
 
 		for (int i = 0; i < 3; i++) {
-			itr1 = (Node) itr1.getNext();
+			itr1 = (SinglyLinkedListNode) itr1.getNext();
 		}
 
-		ll2.addNodeAtEnd(new Node(2, itr1));
+		ll2.addNodeAtEnd(new SinglyLinkedListNode(2, itr1));
 
 		int count = -1;
 		for (int i = 0; i < 10; i++) {
-			itr1 = (Node) itr1.getNext();
+			itr1 = (SinglyLinkedListNode) itr1.getNext();
 			count++;
 			if (count == 2) {
 
 			}
 
 		}
+
+	}
+
+	public SinglyLinkedListNode mergeTwoLists(SinglyLinkedListNode l1, SinglyLinkedListNode l2) {
+		SinglyLinkedListNode newList = null;
+		SinglyLinkedListNode itr = newList;
+
+		while ((l1 != null && l2 != null)) {
+
+			if (l1.data == l2.data) {
+				if (newList == null) {
+					newList = new SinglyLinkedListNode(l1.data);
+					l1 = l1.next;
+					itr = newList;
+					itr.next = new SinglyLinkedListNode(l2.data);
+					itr = itr.next;
+					l2 = l2.next;
+				} else {
+
+					itr.next = new SinglyLinkedListNode(l1.data);
+					l1 = l1.next;
+					itr = itr.next;
+					itr.next = new SinglyLinkedListNode(l2.data);
+					itr = itr.next;
+					l2 = l2.next;
+				}
+			} else {
+				if (l1.data < l2.data) {
+					if (newList == null) {
+						newList = new SinglyLinkedListNode(l1.data);
+						l1 = l1.next;
+						itr = newList;
+
+					} else {
+
+						itr.next = new SinglyLinkedListNode(l1.data);
+						l1 = l1.next;
+						itr = itr.next;
+
+					}
+
+				} else {
+					if (l1.data > l2.data) {
+						if (newList == null) {
+							newList = new SinglyLinkedListNode(l2.data);
+							l2 = l2.next;
+							itr = newList;
+						} else {
+
+							itr.next = new SinglyLinkedListNode(l2.data);
+							l2 = l2.next;
+							itr = itr.next;
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+		if (l1 != null) {
+			if (itr == null) {
+				newList = new SinglyLinkedListNode(l1.data);
+				l1 = l1.next;
+				itr = newList;
+				itr.next = l1;
+			} else
+				itr.next = l1;
+		}
+		if (l2 != null) {
+
+			if (itr == null) {
+				newList = new SinglyLinkedListNode(l2.data);
+				l2 = l2.next;
+				itr = newList;
+				itr.next = l2;
+			} else
+				itr.next = l2;
+		}
+
+		return newList;
+	}
+
+	public static void main(String[] args) {
+		SinglyLL ll = new SinglyLL();
 
 	}
 

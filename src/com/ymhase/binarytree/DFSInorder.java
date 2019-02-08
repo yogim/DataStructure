@@ -22,12 +22,26 @@ public class DFSInorder {
 					break;
 
 				itr = stack.pop();
-				System.out.println(itr.data);
+				System.out.print(itr.data);
 				itr = itr.rightNode;
 
 			}
 
 		}
+
+	}
+
+	
+	private static void inorderRecursion(BTNode node) {
+
+		if (node == null)
+			return;
+
+		inorderRecursion(node.getLeftNode());
+
+		System.out.print(node.getData());
+
+		inorderRecursion(node.getRightNode());
 
 	}
 
@@ -40,6 +54,10 @@ public class DFSInorder {
 		bt.createTree(arr);
 
 		DFSInorder.inorder(bt);
+		
+		System.out.print(">>>");
+		
+		DFSInorder.inorderRecursion(bt.root);
 
 	}
 

@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class Binarytree {
 
-	private BTNode head;
+	public BTNode head;
 
 	public Binarytree() {
 
@@ -25,7 +25,7 @@ public class Binarytree {
 		}
 	}
 
-	private void insertAtbranch(int data, BTNode iterator) {
+	public void insertAtbranch(int data, BTNode iterator) {
 		if (iterator.getData() > data) {
 			if (iterator.getLeftNode() == null) {
 				iterator.setLeftNode(new BTNode(data));
@@ -62,7 +62,7 @@ public class Binarytree {
 
 	}
 
-	private void preorder(BTNode node) {
+	public void preorder(BTNode node) {
 
 		if (node == null)
 			return;
@@ -75,7 +75,7 @@ public class Binarytree {
 
 	}
 
-	private void inorder(BTNode node) {
+	public void inorder(BTNode node) {
 
 		if (node == null)
 			return;
@@ -88,7 +88,7 @@ public class Binarytree {
 
 	}
 
-	private void postorder(BTNode node) {
+	public void postorder(BTNode node) {
 
 		if (node == null)
 			return;
@@ -101,18 +101,16 @@ public class Binarytree {
 
 	}
 
-	private void insertWithoutRecursion(int data) {
+	public static void insertWithoutRecursion(int data, Tree tree) {
 
-		BTNode iterator = head;
+		BTNode iterator = tree.getRoot();
 
 		BTNode parent = null;
 		if (iterator == null) {
 
-			this.head = new BTNode(data);
+			iterator = new BTNode(data);
 			return;
 		}
-
-		// iterator.setLeft(new BTNode(data));
 
 		while (iterator != null) {
 			parent = iterator;
@@ -131,7 +129,7 @@ public class Binarytree {
 
 	}
 
-	private void postorderWithoutIteration() {
+	public void postorderWithoutIteration() {
 		Stack<BTNode> s1 = new Stack<>();
 		Stack<BTNode> s2 = new Stack<>();
 
@@ -147,8 +145,6 @@ public class Binarytree {
 			s2.push(s1.pop());
 
 			if (s2.peek().getLeftNode() != null) {
-				// System.out.println(s2.peek().getLeft().getData());
-				// System.out.println(s2.peek().getData());
 
 				s1.push(s2.peek().getLeftNode());
 
@@ -205,21 +201,9 @@ public class Binarytree {
 
 	}
 
-	public void dfs() {
-
-		BTNode itr = this.head;
-		Stack<BTNode> s = new Stack<>();
-		s.push(itr);
-
-		while (!s.empty()) {
-
-		}
-
-	}
-
+	
 	public void bfs() {
 
-		// BTNode itr = this.head;
 		Queue<BTNode> q = new LinkedList<>();
 		q.add(this.head);
 
@@ -240,7 +224,7 @@ public class Binarytree {
 
 	}
 
-	private void intiaiseWithoutRecusion() {
+	public void intiaiseWithoutRecusion() {
 		this.insert(10);
 		this.insert(3);
 		this.insert(5);
@@ -255,15 +239,15 @@ public class Binarytree {
 
 	private void intialiseWithoutRecursion() {
 
-		this.insertWithoutRecursion(10);
-		this.insertWithoutRecursion(3);
-		this.insertWithoutRecursion(2);
-		this.insertWithoutRecursion(9);
-		this.insertWithoutRecursion(13);
-		this.insertWithoutRecursion(16);
-		this.insertWithoutRecursion(11);
-		this.insertWithoutRecursion(19);
-		this.insertWithoutRecursion(20);
+		// this.insertWithoutRecursion(10);
+		// this.insertWithoutRecursion(3);
+		// this.insertWithoutRecursion(2);
+		// this.insertWithoutRecursion(9);
+		// this.insertWithoutRecursion(13);
+		// this.insertWithoutRecursion(16);
+		// this.insertWithoutRecursion(11);
+		// this.insertWithoutRecursion(19);
+		// this.insertWithoutRecursion(20);
 
 	}
 
@@ -271,8 +255,12 @@ public class Binarytree {
 
 		Binarytree BT = new Binarytree();
 		BT.intialiseWithoutRecursion();
-		// BT.postorderTraversal();
-		System.out.println("----");
+		// // BT.postorderTraversal();
+		// System.out.println("----");
+		BFS b = new BFS();
+		b.bfs(BT.head);
+		System.out.println(">>>>");
+
 		BT.bfs();
 
 	}
