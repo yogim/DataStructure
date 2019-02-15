@@ -12,31 +12,28 @@ public class BinaryTree {
 		this.root = null;
 	}
 
-	public void insert(int data) {
-		if (root == null) {
-			root = new BTNode(data);
-		} else {
-			if (this.root.getData() > data) {
-				insertAtbranch(data, this.root);
-			} else {
-				insertAtbranch(data, this.root);
+	public void insertNode(int data) {
+		BTNode bt = this.root;
+		Queue<BTNode> q = new LinkedList<BTNode>();
+
+		q.add(bt);
+
+		while (true) {
+			BTNode node = q.poll();
+			if (node.leftNode == null) {
+				node = new BTNode(data);
+				break;
 			}
-		}
-	}
-	public void insertAtbranch(int data, BTNode iterator) {
-		if (iterator.getData() > data) {
-			if (iterator.getLeftNode() == null) {
-				iterator.setLeftNode(new BTNode(data));
-			} else {
-				insertAtbranch(data, iterator.getLeftNode());
+			if (node.leftNode == null) {
+				node = new BTNode(data);
+				break;
 			}
 
-		} else {
-			if (iterator.getRightNode() == null) {
-				iterator.setRightNode(new BTNode(data));
-			} else {
-				insertAtbranch(data, iterator.getRightNode());
-			}
+			if (node.leftNode != null)
+				q.add(node.leftNode);
+
+			if (node.rightNode != null)
+				q.add(node.leftNode);
 
 		}
 
@@ -47,7 +44,7 @@ public class BinaryTree {
 		while (itr != null) {
 			if (itr.getData() == data) {
 				System.out.println("Found");
-				break;
+				return;
 			}
 			if (itr.getData() > data) {
 				itr = itr.getLeftNode();
@@ -84,24 +81,24 @@ public class BinaryTree {
 		Queue<BTNode> queue = new LinkedList<BTNode>();
 		queue.add(root);
 
-		if (queue.peek() != null)
-			System.out.println(queue.peek().data);
+//		if (queue.peek() != null)
+//			System.out.println(queue.peek().data);
 
-		while (queue.size() != 0) {
+		while (!queue.isEmpty()) {
 
-			BTNode itr = queue.peek();
+			BTNode itr = queue.poll();
+			
+			System.out.println(itr.data);
 
 			if (itr.leftNode != null) {
-				System.out.println(itr.leftNode.data);
+				//System.out.println(itr.leftNode.data);
 				queue.add(itr.leftNode);
 			}
 
 			if (itr.rightNode != null) {
-				System.out.println(itr.rightNode.data);
+				//System.out.println(itr.rightNode.data);
 				queue.add(itr.rightNode);
 			}
-
-			queue.poll();
 
 		}
 
@@ -109,24 +106,20 @@ public class BinaryTree {
 
 	public BTNode intialiseTree(int[] arr) {
 
-		BTNode root = null;
+		//BTNode root = null;
 
 		Queue<BTNode> q = new LinkedList<>();
 
 		for (int i = 0; i < arr.length; i++) {
-
 			if (root == null) {
 				root = new BTNode(arr[i]);
 				q.add(root);
 			} else {
-
 				if (q.peek().leftNode == null) {
 					BTNode n = new BTNode(arr[i]);
 					q.peek().leftNode = n;
 					q.add(n);
-				}
-
-				else {
+				} else {
 					BTNode n = new BTNode(arr[i]);
 					q.peek().rightNode = n;
 					q.add(n);

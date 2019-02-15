@@ -7,69 +7,14 @@ import java.util.Queue;
 
 public class Deserialize {
 
-	private BTNode root;
-
-	public void bfs() {
-		Queue<BTNode> q = new LinkedList<>();
-
-		q.add(root);
-
-		while (!q.isEmpty()) {
-
-			BTNode temp = q.poll();
-
-			System.out.println(temp.data);
-
-			if (temp.leftNode != null)
-				q.add(temp.leftNode);
-
-			if (temp.rightNode != null)
-				q.add(temp.rightNode);
-
-		}
-
-	}
-
-	public BTNode intialiseTree(int[] arr) {
-
-		BTNode root = null;
-
-		Queue<BTNode> q = new LinkedList<>();
-
-		for (int i = 0; i < arr.length; i++) {
-
-			if (root == null) {
-				root = new BTNode(arr[i]);
-				q.add(root);
-			} else {
-
-				if (q.peek().leftNode == null) {
-					BTNode n = new BTNode(arr[i]);
-					q.peek().leftNode = n;
-					q.add(n);
-				}
-
-				else {
-					BTNode n = new BTNode(arr[i]);
-					q.peek().rightNode = n;
-					q.add(n);
-				}
-
-				if (q.peek().leftNode != null && q.peek().rightNode != null)
-					q.remove();
-			}
-
-		}
-
-		return root;
-	}
-
 	public List<String> deserialize(BTNode root) {
-		Queue<BTNode> q = new LinkedList();
-		q.add(root);
+		Queue<BTNode> q = new LinkedList<BTNode>();
 
-		List<String> ans = new ArrayList();
+		List<String> ans = new ArrayList<String>();
+
+		q.add(root);
 		ans.add(root.data + "");
+		
 		while (!q.isEmpty()) {
 			BTNode n = q.poll();
 
@@ -91,12 +36,13 @@ public class Deserialize {
 		}
 
 		StringBuilder str = new StringBuilder();
+	
 		for (String string : ans) {
-
 			str.append(string);
 		}
 
 		System.out.println(str);
+
 		return ans;
 
 	}

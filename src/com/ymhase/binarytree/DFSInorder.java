@@ -31,7 +31,6 @@ public class DFSInorder {
 
 	}
 
-	
 	private static void inorderRecursion(BTNode node) {
 
 		if (node == null)
