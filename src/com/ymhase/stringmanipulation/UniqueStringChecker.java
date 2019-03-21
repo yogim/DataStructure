@@ -1,4 +1,4 @@
-package com.ymhase.string.uniquechar;
+package com.ymhase.stringmanipulation;
 
 import com.ymhase.common.AlgoFactory;
 
